@@ -2,7 +2,7 @@ package com.w4eret1ckrtb1tch.focusstart.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ValuteResponse(
+data class CurrencyResponse(
     @field:SerializedName("CharCode")
     val charCode: String,
 

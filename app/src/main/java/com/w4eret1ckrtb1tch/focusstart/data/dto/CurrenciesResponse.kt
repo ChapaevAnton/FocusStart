@@ -1,9 +1,8 @@
 package com.w4eret1ckrtb1tch.focusstart.data.dto
 
 import com.google.gson.annotations.SerializedName
-import com.w4eret1ckrtb1tch.focusstart.data.dto.temp.ValuteResponse_
 
-data class ValutesResponse(
+data class CurrenciesResponse(
     @field:SerializedName("Date")
     val date: String,
 
@@ -17,5 +16,5 @@ data class ValutesResponse(
     val timeStamp: String,
 
     @field:SerializedName("Valute")
-    val valute: List<ValuteResponse> = emptyList()
+    val currency: HashMap<String, CurrencyResponse>
 )

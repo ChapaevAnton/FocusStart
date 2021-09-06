@@ -1,11 +1,11 @@
 package com.w4eret1ckrtb1tch.focusstart.di
 
-import com.w4eret1ckrtb1tch.focusstart.data.dto.temp.ValuteResponse_
-import com.w4eret1ckrtb1tch.focusstart.data.dto.temp.ValutesResponse_
-import com.w4eret1ckrtb1tch.focusstart.data.mapper.ValutesMapperImpl
-import com.w4eret1ckrtb1tch.focusstart.data.repository.ValutesRepositoryImpl
-import com.w4eret1ckrtb1tch.focusstart.domain.mapper.ValutesMapper
-import com.w4eret1ckrtb1tch.focusstart.domain.repository.ValutesRepository
+import com.w4eret1ckrtb1tch.focusstart.data.dto.CurrenciesResponse
+import com.w4eret1ckrtb1tch.focusstart.data.dto.CurrencyResponse
+import com.w4eret1ckrtb1tch.focusstart.data.mapper.CurrenciesMapperImpl
+import com.w4eret1ckrtb1tch.focusstart.data.repository.CurrenciesRepositoryImpl
+import com.w4eret1ckrtb1tch.focusstart.domain.mapper.CurrenciesMapper
+import com.w4eret1ckrtb1tch.focusstart.domain.repository.CurrenciesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Reusable
@@ -19,11 +19,11 @@ abstract class AppModule {
 
     @Binds
     @Reusable
-    abstract fun bindValutesRepository(valutesRepository: ValutesRepositoryImpl): ValutesRepository
+    abstract fun bindCurrenciesRepository(currenciesRepository: CurrenciesRepositoryImpl): CurrenciesRepository
 
     @Binds
     @Reusable
-    abstract fun bindValutesMapper(
-        valutesMapper: ValutesMapperImpl
-    ): @JvmSuppressWildcards ValutesMapper<ValutesResponse_, ValuteResponse_>
+    abstract fun bindCurrenciesMapper(
+        currenciesMapper: CurrenciesMapperImpl
+    ): @JvmSuppressWildcards CurrenciesMapper<CurrenciesResponse, CurrencyResponse>
 }

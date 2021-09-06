@@ -1,7 +1,6 @@
 package com.w4eret1ckrtb1tch.focusstart.presentation.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val adapter by lazy {
-        ValutesAdapter()
+        CurrenciesAdapter()
     }
     private val viewModel by viewModels<ListViewModel>()
 
@@ -33,10 +32,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listOfCurrencies.adapter = adapter
-        viewModel.getValutes()
-            .observe(viewLifecycleOwner) { valutes ->
-                adapter.submitList(valutes)
-                Log.d("Error", "onViewCreated: $valutes ")
+        viewModel.getCurrencies()
+            .observe(viewLifecycleOwner) { currencies ->
+                adapter.submitList(currencies)
             }
     }
 
