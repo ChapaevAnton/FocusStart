@@ -15,7 +15,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-
+    private val adapter by lazy {
+        ValutesAdapter()
+    }
     private val viewModel by viewModels<ListViewModel>()
 
     override fun onCreateView(
@@ -30,7 +32,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getValutes().observe(viewLifecycleOwner) { valutes -> }
+        viewModel.getValutes()
+            .observe(viewLifecycleOwner) { valutes -> adapter.submitList(valutes) }
     }
 
 

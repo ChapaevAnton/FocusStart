@@ -1,5 +1,6 @@
 package com.w4eret1ckrtb1tch.focusstart.domain.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 //"ID": "R01010",
@@ -11,11 +12,11 @@ import java.io.Serializable
 //"Previous": 53.8136
 
 data class Valute(
-    val id: Int,
-    val numCode: String,
     val charCode: String,
-    val nominal: Int,
+    val id: String,
     val name: String,
-    val value: Double,
-    val previous: Double
+    val nominal: Int,
+    val numCode: String,
+    val previous: Double,
+    val value: Double
 ) : Serializable
