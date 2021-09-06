@@ -25,12 +25,14 @@ class ValutesAdapter : ListAdapter<Valute, ValutesAdapter.ValuteViewHolder>(Valu
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(valute: Valute) {
-            binding.name.text = valute.name
-            binding.charCode.text = valute.charCode
-            binding.numCode.text = valute.numCode
-            binding.nominal.text = valute.nominal.toString()
-            binding.value.text = valute.value.toString()
-            binding.previous.text = valute.previous.toString()
+            with(binding) {
+                name.text = valute.name
+                charCode.text = valute.charCode
+                numCode.text = valute.numCode
+                nominal.text = valute.nominal.toString()
+                value.text = valute.value.toString()
+                previous.text = valute.previous.toString()
+            }
         }
     }
 }
