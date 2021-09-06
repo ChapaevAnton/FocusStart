@@ -28,7 +28,7 @@ class ValutesAdapter : ListAdapter<Valute, ValutesAdapter.ValuteViewHolder>(Valu
             with(binding) {
                 name.text = valute.name
                 charCode.text = valute.charCode
-                numCode.text = valute.numCode
+                numCode.text = valute.numCode.toString()
                 nominal.text = valute.nominal.toString()
                 value.text = valute.value.toString()
                 previous.text = valute.previous.toString()

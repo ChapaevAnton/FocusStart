@@ -12,11 +12,11 @@ import java.io.Serializable
 //"Previous": 53.8136
 
 data class Valute(
-    val charCode: String,
     val id: String,
-    val name: String,
+    val numCode: Int,
+    val charCode: String,
     val nominal: Int,
-    val numCode: String,
-    val previous: Double,
-    val value: Double
+    val name: String,
+    val value: Double,
+    val previous: Double
 ) : Serializable
