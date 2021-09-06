@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FocusStart</string>
+    <string name="title_list">Курс валют ЦБ РФ на: %1$s</string>
+    <string name="num_code">Цифр.код: %1$s</string>
+    <string name="char_code">Букв.код: %1$s</string>
+    <string name="nominal">единиц: %1$d</string>
+    <string name="name">Валюта: %1$d</string>
+    <string name="value">курс: %1$d</string>
+    <string name="previous">( %1$d )</string>
+
 </resources>
