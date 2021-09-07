@@ -15,9 +15,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val adapter by lazy {
-        CurrenciesAdapter()
-    }
+    private val adapter by lazy { CurrenciesAdapter() }
+    private val decorator by lazy { MarginsItemDecoration(5) }
     private val viewModel by viewModels<ListViewModel>()
 
     override fun onCreateView(
@@ -32,6 +31,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listOfCurrencies.adapter = adapter
+        binding.listOfCurrencies.addItemDecoration(decorator)
+
+
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)

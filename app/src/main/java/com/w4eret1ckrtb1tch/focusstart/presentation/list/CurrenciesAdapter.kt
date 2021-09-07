@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.ValuteItemBinding
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 
@@ -25,13 +26,13 @@ class CurrenciesAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: Currency) {
+            val rate = (currency.value - currency.previous)
             with(binding) {
                 charCode.text = currency.charCode
                 name.text = currency.name
-                nominal.text = currency.nominal.toString()
-                numCode.text = currency.numCode
-                previous.text = currency.previous.toString()
+                previous.text = String.format("( %.4f )", rate)
                 value.text = currency.value.toString()
+                rates.setImageResource(if (rate >= 0) R.drawable.ic_up else R.drawable.ic_down)
             }
         }
     }
