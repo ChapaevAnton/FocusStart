@@ -33,7 +33,7 @@ class ListViewModel
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    currencies.value = it
+                    currencies.value = it.currency.values.toList()
                 },
                 { error ->
                     Log.e("Error", error.toString())
