@@ -19,12 +19,14 @@ class ListViewModel
 ) : ViewModel() {
 
     private val currencies: MutableLiveData<List<Currency>> = MutableLiveData()
+    private val data: MutableLiveData<String> = MutableLiveData()
 
     init {
         loadCurrencies()
     }
 
     fun getCurrencies(): LiveData<List<Currency>> = currencies
+    fun getDate(): LiveData<String> = data
 
     @SuppressLint("CheckResult")
     private fun loadCurrencies() {
@@ -34,6 +36,7 @@ class ListViewModel
             .subscribe(
                 {
                     currencies.value = it.currency.values.toList()
+                    data.value = it.date
                 },
                 { error ->
                     Log.e("Error", error.toString())

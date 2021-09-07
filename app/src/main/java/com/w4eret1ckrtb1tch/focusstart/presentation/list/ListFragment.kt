@@ -33,11 +33,13 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         binding.listOfCurrencies.adapter = adapter
         binding.listOfCurrencies.addItemDecoration(decorator)
 
-
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)
             }
+        viewModel.getDate().observe(viewLifecycleOwner) { data ->
+            binding.title.text = data
+        }
     }
 
 
