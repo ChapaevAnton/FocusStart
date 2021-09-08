@@ -13,12 +13,17 @@
         <action
             android:id="@+id/action_open_item"
             app:destination="@id/itemFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/itemFragment"
         android:name="com.w4eret1ckrtb1tch.focusstart.presentation.item.ItemFragment"
         android:label="fragment_item"
-        tools:layout="@layout/fragment_item" />
+        tools:layout="@layout/fragment_item" >
+        <argument
+            android:name="currency"
+            app:argType="com.w4eret1ckrtb1tch.focusstart.domain.model.Currency" />
+    </fragment>
 
 </navigation>

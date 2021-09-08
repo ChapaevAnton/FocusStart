@@ -12,6 +12,8 @@ import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 class CurrenciesAdapter :
     ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>(CurrenciesDiffCallback) {
 
+    var listener: OnItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = CurrencyItemBinding.inflate(inflater, parent, false)
@@ -20,13 +22,13 @@ class CurrenciesAdapter :
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         val currency = getItem(position)
-        holder.bind(currency)
+        holder.bind(currency, listener)
     }
 
     class CurrencyViewHolder(private val binding: CurrencyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currency: Currency) {
+        fun bind(currency: Currency, listener: OnItemClickListener?) {
             val rate = (currency.value - currency.previous)
             with(binding) {
                 charCode.text = currency.charCode
@@ -34,6 +36,10 @@ class CurrenciesAdapter :
                 previous.text = String.format("( %.4f ₽)", rate)
                 value.text = String.format("%.4f ₽", currency.value)
                 rates.setImageResource(if (rate >= 0) R.drawable.ic_up else R.drawable.ic_down)
+
+                root.setOnClickListener {
+                 listener?.onItemClick(currency)
+                }
             }
         }
     }

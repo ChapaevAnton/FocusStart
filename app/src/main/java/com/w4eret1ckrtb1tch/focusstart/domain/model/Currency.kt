@@ -1,7 +1,9 @@
 package com.w4eret1ckrtb1tch.focusstart.domain.model
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
+@Keep
 data class Currency(
     val charCode: String,
     val id: String,
@@ -9,5 +11,5 @@ data class Currency(
     val nominal: Int,
     val numCode: String,
     val previous: Double,
-    val value: Double
+    var value: Double
 ) : Serializable

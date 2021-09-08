@@ -41,7 +41,7 @@ class ListViewModel
                     date.value = dateTimeFormatter(it.date)
                 },
                 { error ->
-                    Log.e("Error", error.toString())
+                    Log.d("TAG", error.toString())
                 })
     }
 

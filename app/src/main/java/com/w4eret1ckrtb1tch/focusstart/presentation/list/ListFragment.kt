@@ -1,11 +1,13 @@
 package com.w4eret1ckrtb1tch.focusstart.presentation.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +37,12 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)
+                adapter.listener =
+                    OnItemClickListener { currency ->
+                        Log.d("TAG", "onItemClick: ok $currency")
+                        val action = ListFragmentDirections.actionOpenItem(currency)
+                        findNavController().navigate(action)
+                    }
             }
         viewModel.getDate().observe(viewLifecycleOwner) { date ->
             binding.date.text = getString(R.string.title_list, date)
