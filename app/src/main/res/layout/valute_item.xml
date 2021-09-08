@@ -4,20 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <!--    "NumCode": "036",-->
-        <!--    "CharCode": "AUD",-->
-        <!--    "Nominal": 1,-->
-        <!--    "Name": "Австралийский доллар",-->
-        <!--    "Value": 54.1527,-->
-        <!--    "Previous": 53.8136-->
-
 
         <TextView
             android:id="@+id/char_code"
