@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -34,16 +35,30 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         super.onViewCreated(view, savedInstanceState)
         currency = args.currency
         viewModel.setCurrency(currency)
+
         viewModel.getCurrency().observe(viewLifecycleOwner) { currency ->
             with(binding) {
                 name.text = currency.name
-                nominal.text = currency.nominal.toString()
-                value.text = currency.value.toString()
+                nominal.text = getString(R.string.nominal, currency.nominal)
+                value.text = getString(R.string.value, currency.value)
                 charCode.text = currency.charCode
             }
         }
-    }
+        viewModel.getRate().observe(viewLifecycleOwner) { rate ->
+            binding.rate.text = getString(R.string.rate, rate)
+        }
 
+        viewModel.getSum().observe(viewLifecycleOwner) { sum ->
+            binding.sum.text = getString(R.string.sum, sum)
+        }
+
+        binding.cash.addTextChangedListener(onTextChanged = { text, start, count, after ->
+            text?.let {
+                if (it.isNotEmpty())
+                    viewModel.setSum(it.toString().toDouble()) else viewModel.setSum(0.0)
+            }
+        })
+    }
 
     override fun onDestroyView() {
         _binding = null
