@@ -9,5 +9,16 @@
         android:id="@+id/listFragment"
         android:name="com.w4eret1ckrtb1tch.focusstart.presentation.list.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_open_item"
+            app:destination="@id/itemFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.w4eret1ckrtb1tch.focusstart.presentation.item.ItemFragment"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" />
+
 </navigation>

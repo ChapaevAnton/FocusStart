@@ -31,8 +31,8 @@ class CurrenciesAdapter :
             with(binding) {
                 charCode.text = currency.charCode
                 name.text = currency.name
-                previous.text = String.format("( %.4f )", rate)
-                value.text = currency.value.toString()
+                previous.text = String.format("( %.4f ₽)", rate)
+                value.text = String.format("%.4f ₽", currency.value)
                 rates.setImageResource(if (rate >= 0) R.drawable.ic_up else R.drawable.ic_down)
             }
         }

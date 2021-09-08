@@ -16,5 +16,5 @@ data class CurrenciesResponse(
     val timeStamp: String,
 
     @field:SerializedName("Valute")
-    val currency: HashMap<String, CurrencyResponse>
+    val currency: HashMap<String, CurrencyResponse> = hashMapOf()
 )
