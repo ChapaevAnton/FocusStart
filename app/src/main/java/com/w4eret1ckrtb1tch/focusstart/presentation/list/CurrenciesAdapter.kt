@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.w4eret1ckrtb1tch.focusstart.R
-import com.w4eret1ckrtb1tch.focusstart.databinding.ValuteItemBinding
+import com.w4eret1ckrtb1tch.focusstart.databinding.CurrencyItemBinding
+
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 
 class CurrenciesAdapter :
@@ -13,7 +14,7 @@ class CurrenciesAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ValuteItemBinding.inflate(inflater, parent, false)
+        val binding = CurrencyItemBinding.inflate(inflater, parent, false)
         return CurrencyViewHolder(binding)
     }
 
@@ -22,7 +23,7 @@ class CurrenciesAdapter :
         holder.bind(currency)
     }
 
-    class CurrencyViewHolder(private val binding: ValuteItemBinding) :
+    class CurrencyViewHolder(private val binding: CurrencyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: Currency) {
