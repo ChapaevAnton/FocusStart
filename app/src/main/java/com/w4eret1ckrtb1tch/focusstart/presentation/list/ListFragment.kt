@@ -32,16 +32,14 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
         binding.listOfCurrencies.adapter = adapter
         binding.listOfCurrencies.addItemDecoration(decorator)
-
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)
             }
-        viewModel.getDate().observe(viewLifecycleOwner) { data ->
-            binding.title.text = data
+        viewModel.getDate().observe(viewLifecycleOwner) { date ->
+            binding.date.text = getString(R.string.title_list, date)
         }
     }
-
 
     override fun onDestroyView() {
         _binding = null

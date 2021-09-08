@@ -10,6 +10,8 @@ import com.w4eret1ckrtb1tch.focusstart.domain.repository.CurrenciesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,14 +21,14 @@ class ListViewModel
 ) : ViewModel() {
 
     private val currencies: MutableLiveData<List<Currency>> = MutableLiveData()
-    private val data: MutableLiveData<String> = MutableLiveData()
+    private val date: MutableLiveData<String> = MutableLiveData()
 
     init {
         loadCurrencies()
     }
 
     fun getCurrencies(): LiveData<List<Currency>> = currencies
-    fun getDate(): LiveData<String> = data
+    fun getDate(): LiveData<String> = date
 
     @SuppressLint("CheckResult")
     private fun loadCurrencies() {
@@ -36,11 +38,18 @@ class ListViewModel
             .subscribe(
                 {
                     currencies.value = it.currency.values.toList()
-                    data.value = it.date
+                    date.value = dateTimeFormatter(it.date)
                 },
                 { error ->
                     Log.e("Error", error.toString())
                 })
+    }
+
+    private fun dateTimeFormatter(date: String): String {
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val localDate =
+            LocalDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+        return localDate.format(formatter)
     }
 
 }
