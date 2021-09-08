@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">FocusStart</string>
-    <string name="title_list">Курс валют ЦБ РФ на: %1$s</string>
+    <string name="title_date">Курс валют ЦБ РФ на: %1$s</string>
     <string name="num_code">Цифр.код: %1$s</string>
     <string name="char_code">Букв.код: %1$s</string>
     <string name="nominal">1 лот = %1$d шт.</string>
-    <string name="sum">%1$.4f</string>
+    <string name="amount_currency">%1$.4f</string>
     <string name="value">%1$.4f ₽</string>
     <string name="rate">( %1$.4f ₽ )</string>
 

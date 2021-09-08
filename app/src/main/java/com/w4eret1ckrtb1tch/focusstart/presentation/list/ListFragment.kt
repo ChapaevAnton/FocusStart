@@ -1,7 +1,6 @@
 package com.w4eret1ckrtb1tch.focusstart.presentation.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,13 +38,12 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                 adapter.submitList(currencies)
                 adapter.listener =
                     OnItemClickListener { currency ->
-                        Log.d("TAG", "onItemClick: ok $currency")
                         val action = ListFragmentDirections.actionOpenItem(currency)
                         findNavController().navigate(action)
                     }
             }
         viewModel.getDate().observe(viewLifecycleOwner) { date ->
-            binding.date.text = getString(R.string.title_list, date)
+            binding.date.text = getString(R.string.title_date, date)
         }
     }
 

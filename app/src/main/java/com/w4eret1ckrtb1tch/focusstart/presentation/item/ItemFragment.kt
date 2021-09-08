@@ -35,7 +35,6 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         super.onViewCreated(view, savedInstanceState)
         currency = args.currency
         viewModel.setCurrency(currency)
-
         viewModel.getCurrency().observe(viewLifecycleOwner) { currency ->
             with(binding) {
                 name.text = currency.name
@@ -47,15 +46,15 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         viewModel.getRate().observe(viewLifecycleOwner) { rate ->
             binding.rate.text = getString(R.string.rate, rate)
         }
-
-        viewModel.getSum().observe(viewLifecycleOwner) { sum ->
-            binding.sum.text = getString(R.string.sum, sum)
+        viewModel.getAmountCurrency().observe(viewLifecycleOwner) { amountCurrency ->
+            binding.amountCurrency.text = getString(R.string.amount_currency, amountCurrency)
         }
-
-        binding.cash.addTextChangedListener(onTextChanged = { text, start, count, after ->
-            text?.let {
+        binding.cash.addTextChangedListener(onTextChanged = { cash, _, _, _ ->
+            cash?.let {
                 if (it.isNotEmpty())
-                    viewModel.setSum(it.toString().toDouble()) else viewModel.setSum(0.0)
+                    viewModel.setAmountCurrency(
+                        it.toString().toDouble()
+                    ) else viewModel.setAmountCurrency(0.0)
             }
         })
     }
