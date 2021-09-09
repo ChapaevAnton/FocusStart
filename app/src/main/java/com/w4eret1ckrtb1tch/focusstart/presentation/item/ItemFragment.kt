@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -57,14 +55,11 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         viewModel.getAmountCurrency().observe(viewLifecycleOwner) { amountCurrency ->
             binding.amountCurrency.text = getString(R.string.amount_currency, amountCurrency)
         }
-        binding.cash.addTextChangedListener(onTextChanged = { cash, _, _, _ ->
-            cash?.let {
-                if (it.isNotEmpty())
-                    viewModel.setAmountCurrency(
-                        it.toString().toDouble()
-                    ) else viewModel.setAmountCurrency(0.0)
-            }
-        })
+        viewModel.getInputCash().observe(viewLifecycleOwner) { inputCash ->
+            binding.cash.setText(inputCash)
+            binding.cash.setSelection(inputCash.length)
+        }
+        binding.cash.addTextChangedListener(viewModel.getTextWatcher())
     }
 
     override fun onDestroyView() {
