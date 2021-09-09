@@ -59,7 +59,9 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
             binding.cash.setText(inputCash)
             binding.cash.setSelection(inputCash.length)
         }
-        binding.cash.addTextChangedListener(viewModel.getTextWatcher())
+        viewModel.getTextWatcher().observe(viewLifecycleOwner) { textWatcher ->
+            binding.cash.addTextChangedListener(textWatcher)
+        }
     }
 
     override fun onDestroyView() {
