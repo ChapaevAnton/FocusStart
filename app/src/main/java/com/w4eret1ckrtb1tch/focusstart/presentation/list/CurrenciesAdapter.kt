@@ -29,16 +29,15 @@ class CurrenciesAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: Currency, listener: OnItemClickListener?) {
-            val rate = (currency.value - currency.previous)
+            val deviationRate = (currency.value - currency.previous)
             with(binding) {
                 charCode.text = currency.charCode
                 name.text = currency.name
-                previous.text = String.format("( %.4f ₽)", rate)
+                rate.text = String.format("( %.4f ₽)", deviationRate)
                 value.text = String.format("%.4f ₽", currency.value)
-                rates.setImageResource(if (rate >= 0) R.drawable.ic_up else R.drawable.ic_down)
-
+                rateArrow.setImageResource(if (deviationRate >= 0) R.drawable.ic_up else R.drawable.ic_down)
                 root.setOnClickListener {
-                 listener?.onItemClick(currency)
+                    listener?.onItemClick(currency)
                 }
             }
         }

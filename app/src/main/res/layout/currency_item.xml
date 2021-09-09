@@ -55,7 +55,7 @@
             tools:text="@tools:sample/lorem" />
 
         <TextView
-            android:id="@+id/previous"
+            android:id="@+id/rate"
             style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,14 +68,14 @@
             tools:text="@tools:sample/lorem" />
 
         <ImageView
-            android:id="@+id/rates"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/rate_arrow"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_margin="@dimen/margin_layout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/previous"
+            app:layout_constraintStart_toEndOf="@id/rate"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_up" />
 

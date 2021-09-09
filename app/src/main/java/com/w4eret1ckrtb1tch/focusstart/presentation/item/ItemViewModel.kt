@@ -11,16 +11,16 @@ import javax.inject.Inject
 class ItemViewModel @Inject constructor() : ViewModel() {
 
     private var currency: MutableLiveData<Currency> = MutableLiveData()
-    private var rate: MutableLiveData<Double> = MutableLiveData(0.0)
+    private var deviationRate: MutableLiveData<Double> = MutableLiveData(0.0)
     private var amountCurrency: MutableLiveData<Double> = MutableLiveData(0.0)
 
     fun getCurrency(): LiveData<Currency> = currency
-    fun getRate(): LiveData<Double> = rate
+    fun getDeviationRate(): LiveData<Double> = deviationRate
     fun getAmountCurrency(): LiveData<Double> = amountCurrency
 
     fun setCurrency(valueCurrency: Currency) {
         currency.value = valueCurrency
-        rate.value = valueCurrency.value - valueCurrency.previous
+        deviationRate.value = valueCurrency.value - valueCurrency.previous
     }
 
     fun setAmountCurrency(cash: Double) {

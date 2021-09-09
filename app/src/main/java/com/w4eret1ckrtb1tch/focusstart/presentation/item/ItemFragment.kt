@@ -1,9 +1,11 @@
 package com.w4eret1ckrtb1tch.focusstart.presentation.item
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -43,8 +45,14 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
                 charCode.text = currency.charCode
             }
         }
-        viewModel.getRate().observe(viewLifecycleOwner) { rate ->
-            binding.rate.text = getString(R.string.rate, rate)
+        viewModel.getDeviationRate().observe(viewLifecycleOwner) { deviationRate ->
+            binding.rate.text = getString(R.string.rate, deviationRate)
+            binding.rate.setTextColor(
+                if (deviationRate >= 0)
+                    Color.parseColor("#ff669900")
+                else Color.parseColor("#ffcc0000")
+            )
+            binding.rateArrow.setImageResource(if (deviationRate >= 0) R.drawable.ic_up else R.drawable.ic_down)
         }
         viewModel.getAmountCurrency().observe(viewLifecycleOwner) { amountCurrency ->
             binding.amountCurrency.text = getString(R.string.amount_currency, amountCurrency)
