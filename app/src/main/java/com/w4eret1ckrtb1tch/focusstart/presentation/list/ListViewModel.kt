@@ -31,12 +31,13 @@ class ListViewModel
     fun getDate(): LiveData<String> = date
 
     @SuppressLint("CheckResult")
-    private fun loadCurrencies() {
+    fun loadCurrencies() {
         repository.getCurrencies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
+                    Log.d("TAG", "loadCurrencies: load")
                     currencies.value = it.currency.values.toList()
                     date.value = dateTimeFormatter(it.date)
                 },

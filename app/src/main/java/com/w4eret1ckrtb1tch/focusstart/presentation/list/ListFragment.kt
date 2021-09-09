@@ -33,6 +33,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
         binding.listOfCurrencies.adapter = adapter
         binding.listOfCurrencies.addItemDecoration(decorator)
+        binding.loadCurrencies.setOnClickListener { viewModel.loadCurrencies() }
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)

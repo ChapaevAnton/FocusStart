@@ -42,7 +42,6 @@ class ItemViewModel @Inject constructor() : ViewModel() {
 
             override fun afterTextChanged(input: Editable?) {
                 input?.toString()?.let {
-
                     if (it.matches("^\\.".toRegex())) {
                         amountCurrency.value = 0.0
                         inputCash.value = "0."
