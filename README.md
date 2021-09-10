@@ -1,4 +1,4 @@
-# FocusStart
+# FocusStart - Тестовое задание.
 
 Приложение для получения курса валют с сервера цб рф по ссылке: https://www.cbr-xml-daily.ru/daily_json.js
 
