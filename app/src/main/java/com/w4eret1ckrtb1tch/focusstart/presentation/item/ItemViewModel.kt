@@ -16,74 +16,38 @@ class ItemViewModel @Inject constructor() : ViewModel() {
     private val currency: MutableLiveData<Currency> = MutableLiveData()
     private val deviationRate: MutableLiveData<Double> = MutableLiveData(0.0)
     private val amountCurrency: MutableLiveData<Double> = MutableLiveData(0.0)
-    private val inputCash: MutableLiveData<String> = MutableLiveData()
-    private val textWatcher: MutableLiveData<TextWatcher> = MutableLiveData()
-
-    init {
-        initTextWatcher()
-    }
+    private var textWatcher: TextWatcher? = null
 
     fun getCurrency(): LiveData<Currency> = currency
     fun getDeviationRate(): LiveData<Double> = deviationRate
     fun getAmountCurrency(): LiveData<Double> = amountCurrency
-    fun getInputCash(): LiveData<String> = inputCash
-    fun getTextWatcher(): LiveData<TextWatcher> = textWatcher
 
     fun setCurrency(valueCurrency: Currency) {
         currency.value = valueCurrency
         deviationRate.value = valueCurrency.value - valueCurrency.previous
     }
 
-    private fun initTextWatcher() {
-        Log.d("TAG", "initTextWatcher: ok")
-        textWatcher.value = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+    fun getTextWatcher(): TextWatcher? {
+        if (textWatcher == null) {
+            Log.d("TAG", "initTextWatcher: ok")
+            textWatcher = object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(input: CharSequence?, start: Int, before: Int, count: Int) {
-                input?.let {
-                    if (it.isEmpty() || it.matches("^\\.".toRegex())) {
-                        amountCurrency.value = 0.0
-                    } else {
-                        amountCurrency.value = (it.toString().toDouble()) / currency.value!!.value
-                    }
-
-                }
-            }
-
-            override fun afterTextChanged(input: Editable?) {
-                // FIXME: 09.09.2021 rotate screen - inputCash no save
-                input?.toString()?.let {
-                    if (it.matches("^\\.".toRegex())) {
-                        inputCash.value = "0."
-                        amountCurrency.value = 0.0
+                override fun onTextChanged(input: CharSequence?, start: Int, before: Int, count: Int) {
+                    input?.let {
+                        if (it.isEmpty() || it.matches("^\\.".toRegex())) {
+                            amountCurrency.value = 0.0
+                        } else {
+                            amountCurrency.value =
+                                (it.toString().toDouble()) / currency.value!!.value
+                        }
                     }
                 }
+
+                override fun afterTextChanged(input: Editable?) {}
             }
         }
+        return textWatcher
     }
-
-//    fun getTextWatcher(): TextWatcher {
-//        return object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//
-//            override fun onTextChanged(input: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                input?.let {
-//                    if (it.isEmpty() || it.matches("^\\.".toRegex())) {
-//                        amountCurrency.value = 0.0
-//                    } else
-//                        amountCurrency.value = (it.toString().toDouble()) / currency.value!!.value
-//                }
-//            }
-//
-//            override fun afterTextChanged(input: Editable?) {
-//                input?.toString()?.let {
-//                    if (it.matches("^\\.".toRegex())) {
-//                        amountCurrency.value = 0.0
-//                        inputCash.value = "0."
-//                    }
-//                }
-//            }
-//        }
-//    }
 
 }

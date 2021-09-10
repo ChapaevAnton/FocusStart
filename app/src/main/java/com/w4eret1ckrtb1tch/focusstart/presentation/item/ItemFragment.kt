@@ -55,13 +55,9 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         viewModel.getAmountCurrency().observe(viewLifecycleOwner) { amountCurrency ->
             binding.amountCurrency.text = getString(R.string.amount_currency, amountCurrency)
         }
-        viewModel.getInputCash().observe(viewLifecycleOwner) { inputCash ->
-            binding.cash.setText(inputCash)
-            binding.cash.setSelection(inputCash.length)
-        }
-        viewModel.getTextWatcher().observe(viewLifecycleOwner) { textWatcher ->
-            binding.cash.addTextChangedListener(textWatcher)
-        }
+
+        binding.cash.addTextChangedListener(viewModel.getTextWatcher())
+
     }
 
     override fun onDestroyView() {
