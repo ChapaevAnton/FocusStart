@@ -41,8 +41,8 @@
         app:layout_constraintEnd_toStartOf="@id/rate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nominal"
+        app:layout_constraintStart_toEndOf="@id/nominal"
+        app:layout_constraintTop_toBottomOf="@id/name"
         tools:text="@tools:sample/first_names" />
 
     <TextView
@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toStartOf="@id/rate_arrow"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/value"
-        app:layout_constraintTop_toBottomOf="@id/nominal"
+        app:layout_constraintTop_toBottomOf="@id/name"
         tools:text="@tools:sample/lorem" />
 
     <ImageView
@@ -65,22 +65,23 @@
         android:layout_marginStart="@dimen/margin_layout_1"
         android:layout_marginTop="@dimen/margin_layout_2"
         android:src="@drawable/ic_up"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/amount_currency"
         app:layout_constraintStart_toEndOf="@id/rate"
-        app:layout_constraintTop_toBottomOf="@id/nominal" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <EditText
-        android:maxLength="15"
         android:id="@+id/cash"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_layout_3"
+        android:layout_marginStart="@dimen/margin_layout_2"
+        android:layout_marginTop="@dimen/margin_layout_2"
         android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="@string/cash"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amount_currency" />
@@ -91,12 +92,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_layout_2"
-        android:layout_marginTop="@dimen/margin_layout_2"
+        android:layout_marginTop="@dimen/margin_layout_3"
         app:layout_constraintEnd_toStartOf="@id/char_code"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rate"
-        tools:text="@tools:sample/lorem" />
+        tools:text="@tools:sample/first_names" />
 
     <TextView
         android:id="@+id/char_code"
@@ -104,7 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_layout_1"
-        android:layout_marginTop="@dimen/margin_layout_2"
+        android:layout_marginTop="@dimen/margin_layout_3"
         android:layout_marginEnd="@dimen/margin_layout_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/amount_currency"

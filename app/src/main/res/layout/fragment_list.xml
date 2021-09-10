@@ -12,7 +12,7 @@
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_layout"
+        android:layout_margin="@dimen/margin_layout_1"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/list_of_currencies"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_layout"
+        android:layout_margin="@dimen/margin_layout_1"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/load_currencies"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
         tools:listitem="@layout/currency_item" />
 
     <Button
-        android:layout_margin="@dimen/margin_layout"
+        android:layout_margin="@dimen/margin_layout_1"
         android:id="@+id/load_currencies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
