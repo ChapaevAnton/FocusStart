@@ -10,8 +10,7 @@ import com.w4eret1ckrtb1tch.focusstart.domain.repository.CurrenciesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.DateFormat
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,18 +38,10 @@ class ListViewModel
                 {
                     Log.d("TAG", "loadCurrencies: load")
                     currencies.value = it.currency.values.toList()
-                    date.value = dateTimeFormatter(it.date)
+                    date.value = DateFormat.getDateInstance().format(it.date)
                 },
                 { error ->
                     Log.d("TAG", error.toString())
                 })
     }
-
-    private fun dateTimeFormatter(date: String): String {
-        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-        val localDate =
-            LocalDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-        return localDate.format(formatter)
-    }
-
 }

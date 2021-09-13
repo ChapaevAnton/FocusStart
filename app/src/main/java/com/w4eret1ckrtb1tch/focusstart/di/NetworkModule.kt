@@ -1,6 +1,7 @@
 package com.w4eret1ckrtb1tch.focusstart.di
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.w4eret1ckrtb1tch.focusstart.data.source.DailyApi
 import dagger.Module
 import dagger.Provides
@@ -27,10 +28,11 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(
         builder: Retrofit.Builder,
-        okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient,
+        gson: Gson
     ): Retrofit {
         return builder
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .baseUrl(URL)
@@ -47,6 +49,14 @@ object NetworkModule {
     @Singleton
     fun provideRetrofitBuilder(): Retrofit.Builder {
         return Retrofit.Builder()
+    }
+
+    @Provides
+    @Singleton
+    fun provideGsonClient(): Gson {
+        return GsonBuilder()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
+            .create()
     }
 
 }
