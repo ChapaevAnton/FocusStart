@@ -14,18 +14,26 @@ class CurrenciesMapperImpl
     override fun map(currencies: CurrenciesResponse): Currencies {
         return with(currencies) {
             Currencies(
-                date,
-                previousDate,
-                previousURL,
-                timeStamp,
-                currency.mapValues { map(it.value) }.toMap(HashMap())
+                date = date,
+                previousDate = previousDate,
+                previousURL = previousURL,
+                timeStamp = timeStamp,
+                currency = currency.mapValues { map(it.value) }.toMap(HashMap())
             )
         }
     }
 
     override fun map(currency: CurrencyResponse): Currency {
         return with(currency) {
-            Currency(charCode, id, name, nominal, numCode, previous, value)
+            Currency(
+                charCode = charCode,
+                id = id,
+                name = name,
+                nominal = nominal,
+                numCode = numCode,
+                previous = previous,
+                value = value
+            )
         }
     }
 }
