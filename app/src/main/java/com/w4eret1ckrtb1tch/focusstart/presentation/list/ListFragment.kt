@@ -10,13 +10,14 @@ import androidx.navigation.fragment.findNavController
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list) {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val adapter by lazy { CurrenciesAdapter() }
+    @Inject lateinit var adapter:CurrenciesAdapter
     private val decorator by lazy { MarginsItemDecoration(5) }
     private val viewModel by viewModels<ListViewModel>()
 

@@ -1,15 +1,15 @@
 package com.w4eret1ckrtb1tch.focusstart.presentation.list
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.CurrencyItemBinding
-
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 
-class CurrenciesAdapter :
+class CurrenciesAdapter(private val context: Context) :
     ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>(CurrenciesDiffCallback) {
 
     var listener: OnItemClickListener? = null
@@ -25,7 +25,7 @@ class CurrenciesAdapter :
         holder.bind(currency, listener)
     }
 
-    class CurrencyViewHolder(private val binding: CurrencyItemBinding) :
+    inner class CurrencyViewHolder(private val binding: CurrencyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currency: Currency, listener: OnItemClickListener?) {
@@ -33,8 +33,8 @@ class CurrenciesAdapter :
             with(binding) {
                 charCode.text = currency.charCode
                 name.text = currency.name
-                rate.text = String.format("( %.4f ₽)", deviationRate)
-                value.text = String.format("%.4f ₽", currency.value)
+                rate.text = context.getString(R.string.rate, deviationRate)
+                value.text = context.getString(R.string.value, currency.value)
                 rateArrow.setImageResource(if (deviationRate >= 0) R.drawable.ic_up else R.drawable.ic_down)
                 root.setOnClickListener {
                     listener?.onItemClick(currency)
