@@ -31,17 +31,17 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter.listener =
+            OnItemClickListener { currency ->
+                val action = ListFragmentDirections.actionOpenItem(currency)
+                findNavController().navigate(action)
+            }
         binding.listOfCurrencies.adapter = adapter
         binding.listOfCurrencies.addItemDecoration(decorator)
         binding.loadCurrencies.setOnClickListener { viewModel.loadCurrencies() }
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)
-                adapter.listener =
-                    OnItemClickListener { currency ->
-                        val action = ListFragmentDirections.actionOpenItem(currency)
-                        findNavController().navigate(action)
-                    }
             }
         viewModel.getDate().observe(viewLifecycleOwner) { date ->
             binding.date.text = getString(R.string.title_date, date)
@@ -49,7 +49,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
     override fun onDestroyView() {
-        _binding = null
         super.onDestroyView()
+        _binding = null
+        adapter.listener = null
     }
 }
