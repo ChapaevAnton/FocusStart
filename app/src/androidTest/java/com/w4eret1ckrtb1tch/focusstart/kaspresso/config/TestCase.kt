@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.kaspresso.screen
+package com.w4eret1ckrtb1tch.focusstart.kaspresso.config
 
 @Repeatable
 @Retention(AnnotationRetention.SOURCE)

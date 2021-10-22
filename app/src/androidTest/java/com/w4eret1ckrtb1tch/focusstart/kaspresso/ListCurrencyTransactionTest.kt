@@ -1,9 +1,15 @@
-package com.w4eret1ckrtb1tch.focusstart.kaspresso.screen
+package com.w4eret1ckrtb1tch.focusstart.kaspresso
 
-import androidx.annotation.DrawableRes
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.w4eret1ckrtb1tch.focusstart.R
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.config.KTestCase
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.config.TestCase
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.config.toRate
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.config.toValue
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.data.Transaction
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.data.TransactionData
+import com.w4eret1ckrtb1tch.focusstart.kaspresso.screen.MainScreen
 import com.w4eret1ckrtb1tch.focusstart.presentation.BaseActivity
 import org.junit.Rule
 import org.junit.Test
@@ -12,7 +18,7 @@ import java.math.BigDecimal
 
 
 @RunWith(AndroidJUnit4::class)
-class TransactionTest : KTestCase() {
+class ListCurrencyTransactionTest : KTestCase() {
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(BaseActivity::class.java)
@@ -23,6 +29,20 @@ class TransactionTest : KTestCase() {
         description = "Check that the application loads and correctly displays the list of currency rates"
     )
     fun checkTransactions() {
+        run {
+
+            step("Check transactions content") {
+                checkTransactions(*TransactionData.transaction)
+            }
+        }
+    }
+
+    @Test
+    @TestCase(
+        name = "Test-1",
+        description = "Check title and data refresh button"
+    )
+    fun checkTitleInfoAndUpdateButton() {
         run {
 
             step("Check title info") {
@@ -43,59 +63,8 @@ class TransactionTest : KTestCase() {
                     }
                 }
             }
-
-            step("Check transactions content") {
-                checkTransactions(
-                    Transaction(
-                        charCode = "AUD",
-                        name = "Австралийский доллар",
-                        value = BigDecimal(53.1292),
-                        rate = BigDecimal(-0.1198),
-                        arrowId = R.drawable.ic_down
-                    ),
-                    Transaction(
-                        charCode = "AMD",
-                        name = "Армянских драмов",
-                        value = BigDecimal(14.864),
-                        rate = BigDecimal(-0.0167),
-                        arrowId = R.drawable.ic_down
-
-                    ),
-                    Transaction(
-                        charCode = "GBP",
-                        name = "Фунт стерлингов Соединенного королевства",
-                        value = BigDecimal(97.9668),
-                        rate = BigDecimal(0.0168),
-                        arrowId = R.drawable.ic_up
-                    ),
-                    Transaction(
-                        charCode = "AZN",
-                        name = "Азербайджанский манат",
-                        value = BigDecimal(41.7836),
-                        rate = BigDecimal(-0.0384),
-                        arrowId = R.drawable.ic_down
-                    ),
-                    Transaction(
-                        charCode = "BYN",
-                        name = "Белорусский рубль",
-                        value = BigDecimal(29.1685),
-                        rate = BigDecimal(0.0355),
-                        arrowId = R.drawable.ic_up
-                    )
-                )
-            }
         }
-
     }
-
-    data class Transaction(
-        val charCode: String,
-        val name: String,
-        val value: BigDecimal,
-        val rate: BigDecimal,
-        @DrawableRes
-        val arrowId: Int
-    )
 
     private fun checkTransactions(vararg transactions: Transaction) {
         transactions.forEachIndexed { index, transaction ->
@@ -132,11 +101,5 @@ class TransactionTest : KTestCase() {
             }
         }
     }
-
-    private fun BigDecimal.toRate() =
-        String.format("( %1$.4f ₽ )", this)
-
-    private fun BigDecimal.toValue() =
-        String.format("%1$.4f ₽", this)
 
 }
