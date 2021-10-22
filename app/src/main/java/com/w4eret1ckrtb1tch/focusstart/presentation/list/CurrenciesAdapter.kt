@@ -8,9 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.CurrencyItemBinding
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.FragmentScoped
 import java.math.BigDecimal
+import javax.inject.Inject
 
-class CurrenciesAdapter(private val context: Context) :
+@FragmentScoped
+class CurrenciesAdapter @Inject constructor(
+    @ApplicationContext
+    private val context: Context
+) :
     ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>(CurrenciesDiffCallback) {
 
     var listener: OnItemClickListener? = null

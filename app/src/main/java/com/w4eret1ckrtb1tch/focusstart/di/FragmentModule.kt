@@ -1,22 +1,22 @@
 package com.w4eret1ckrtb1tch.focusstart.di
 
-import android.content.Context
+import androidx.recyclerview.widget.ListAdapter
+import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 import com.w4eret1ckrtb1tch.focusstart.presentation.list.CurrenciesAdapter
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.scopes.FragmentScoped
 
 @Module
 @InstallIn(FragmentComponent::class)
-class FragmentModule {
+abstract class FragmentModule {
 
-    @Provides
-    @FragmentScoped
-    fun provideCurrenciesAdapter(@ActivityContext context: Context): CurrenciesAdapter {
-        return CurrenciesAdapter(context)
-    }
+    @Binds
+    @Reusable
+    abstract fun bindCurrenciesAdapter(
+        currenciesAdapter: CurrenciesAdapter
+    ): ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>
 
 }
