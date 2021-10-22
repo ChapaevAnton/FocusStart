@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.CurrencyItemBinding
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
+import java.math.BigDecimal
 
 class CurrenciesAdapter(private val context: Context) :
     ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>(CurrenciesDiffCallback) {
@@ -35,7 +36,7 @@ class CurrenciesAdapter(private val context: Context) :
                 name.text = currency.name
                 rate.text = context.getString(R.string.rate, deviationRate)
                 value.text = context.getString(R.string.value, currency.value)
-                rateArrow.setImageResource(if (deviationRate >= 0) R.drawable.ic_up else R.drawable.ic_down)
+                rateArrow.setImageResource(if (deviationRate >= BigDecimal(0)) R.drawable.ic_up else R.drawable.ic_down)
                 root.setOnClickListener {
                     listener?.onItemClick(currency)
                 }

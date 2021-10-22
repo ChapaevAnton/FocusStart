@@ -1,6 +1,8 @@
 package com.w4eret1ckrtb1tch.focusstart.data.dto
 
 import com.google.gson.annotations.SerializedName
+import java.math.BigDecimal
+import java.math.BigInteger
 
 data class CurrencyResponse(
     @field:SerializedName("CharCode")
@@ -13,14 +15,14 @@ data class CurrencyResponse(
     val name: String,
 
     @field:SerializedName("Nominal")
-    val nominal: Int,
+    val nominal: BigInteger,
 
     @field:SerializedName("NumCode")
     val numCode: String,
 
     @field:SerializedName("Previous")
-    val previous: Double,
+    val previous: BigDecimal,
 
     @field:SerializedName("Value")
-    val value: Double
+    val value: BigDecimal
 )

@@ -12,6 +12,7 @@ import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.FragmentItemBinding
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 import dagger.hilt.android.AndroidEntryPoint
+import java.math.BigDecimal
 
 @AndroidEntryPoint
 class ItemFragment : Fragment(R.layout.fragment_item) {
@@ -46,11 +47,11 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         viewModel.getDeviationRate().observe(viewLifecycleOwner) { deviationRate ->
             binding.rate.text = getString(R.string.rate, deviationRate)
             binding.rate.setTextColor(
-                if (deviationRate >= 0)
+                if (deviationRate >= BigDecimal(0))
                     Color.parseColor("#ff669900")
                 else Color.parseColor("#ffcc0000")
             )
-            binding.rateArrow.setImageResource(if (deviationRate >= 0) R.drawable.ic_up else R.drawable.ic_down)
+            binding.rateArrow.setImageResource(if (deviationRate >= BigDecimal(0)) R.drawable.ic_up else R.drawable.ic_down)
         }
         viewModel.getAmountCurrency().observe(viewLifecycleOwner) { amountCurrency ->
             binding.amountCurrency.text = getString(R.string.amount_currency, amountCurrency)
