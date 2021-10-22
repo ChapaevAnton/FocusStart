@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.w4eret1ckrtb1tch.focusstart.di.Repository
+import com.w4eret1ckrtb1tch.focusstart.di.CurrentRepository
 import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
 import com.w4eret1ckrtb1tch.focusstart.domain.repository.CurrenciesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel
 @Inject constructor(
-    @Repository
+    @CurrentRepository
     private val repository: CurrenciesRepository
 ) : ViewModel() {
 

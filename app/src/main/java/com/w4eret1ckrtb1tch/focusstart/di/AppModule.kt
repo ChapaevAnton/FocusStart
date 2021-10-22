@@ -25,7 +25,7 @@ abstract class AppModule {
 
     @Binds
     @Reusable
-    @Repository
+    @CurrentRepository
     abstract fun bindMockCurrenciesRepository(mockCurrenciesRepositoryImpl: MockCurrenciesRepositoryImpl): CurrenciesRepository
 
     @Binds
@@ -36,4 +36,4 @@ abstract class AppModule {
 }
 
 @Qualifier
-annotation class Repository
+annotation class CurrentRepository
