@@ -66,4 +66,6 @@ dependencies {
     //mockito
     testImplementation "org.mockito:mockito-core:4.0.0"
     androidTestImplementation "org.mockito:mockito-android:4.0.0"
+    //kaspresso
+    androidTestImplementation "com.kaspersky.android-components:kaspresso:1.2.0"
 }
