@@ -28,8 +28,7 @@ class MockCurrenciesRepositoryImpl @Inject constructor(
     }
 
     private fun getCurrenciesMock(): Currencies {
-        val file =
-            File("app/src/main/res/raw/data.json")
+        val file = File("data.json")
         val reader = context.assets.open(file.name).bufferedReader().use { it.readText() }
         val currenciesResponse = gson.fromJson(reader, CurrenciesResponse::class.java)
         Log.d("TAG", "getCurrenciesMock: $currenciesResponse")
