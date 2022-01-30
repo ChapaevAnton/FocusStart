@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.presentation.list
+package com.w4eret1ckrtb1tch.focusstart.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.CurrencyItemBinding
-import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
+import com.w4eret1ckrtb1tch.focusstart.domain.model.Rate
+import com.w4eret1ckrtb1tch.focusstart.ui.fragment.OnItemClickListener
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.FragmentScoped
 import java.math.BigDecimal
@@ -18,7 +19,7 @@ class CurrenciesAdapter @Inject constructor(
     @ApplicationContext
     private val context: Context
 ) :
-    ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>(CurrenciesDiffCallback) {
+    ListAdapter<Rate, CurrenciesAdapter.CurrencyViewHolder>(CurrenciesDiffCallback) {
 
     var listener: OnItemClickListener? = null
 
@@ -36,16 +37,16 @@ class CurrenciesAdapter @Inject constructor(
     inner class CurrencyViewHolder(private val binding: CurrencyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currency: Currency, listener: OnItemClickListener?) {
-            val deviationRate = (currency.value - currency.previous)
+        fun bind(rate: Rate, listener: OnItemClickListener?) {
+            val deviationRate = (rate.value - rate.previous)
             with(binding) {
-                charCode.text = currency.charCode
-                name.text = currency.name
-                rate.text = context.getString(R.string.rate, deviationRate)
-                value.text = context.getString(R.string.value, currency.value)
+                charCode.text = rate.charCode
+                name.text = rate.name
+                this.rate.text = context.getString(R.string.rate, deviationRate)
+                value.text = context.getString(R.string.value, rate.value)
                 rateArrow.setImageResource(if (deviationRate >= BigDecimal(0)) R.drawable.ic_up else R.drawable.ic_down)
                 root.setOnClickListener {
-                    listener?.onItemClick(currency)
+                    listener?.onItemClick(rate)
                 }
             }
         }

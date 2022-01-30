@@ -1,16 +1,15 @@
 package com.w4eret1ckrtb1tch.focusstart.domain.model
 
 
-import androidx.annotation.Keep
-import java.io.Serializable
-import java.util.*
-import kotlin.collections.HashMap
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import java.util.Date
 
-@Keep
+@Parcelize
 data class Currencies(
     val date: Date,
     val previousDate: String,
     val previousURL: String,
     val timeStamp: Date,
-    val currency: HashMap<String, Currency>
-) : Serializable
+    val rate: HashMap<String, Rate>
+) : Parcelable

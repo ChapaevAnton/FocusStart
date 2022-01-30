@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.presentation.list
+package com.w4eret1ckrtb1tch.focusstart.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.FragmentListBinding
+import com.w4eret1ckrtb1tch.focusstart.presentation.viewmodel.ListViewModel
+import com.w4eret1ckrtb1tch.focusstart.ui.adapter.CurrenciesAdapter
+import com.w4eret1ckrtb1tch.focusstart.ui.adapter.MarginsItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,7 +20,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    @Inject lateinit var adapter:CurrenciesAdapter
+    @Inject lateinit var adapter: CurrenciesAdapter
     private val decorator by lazy { MarginsItemDecoration(5) }
     private val viewModel by viewModels<ListViewModel>()
 

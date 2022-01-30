@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.presentation.list
+package com.w4eret1ckrtb1tch.focusstart.presentation.viewmodel
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.w4eret1ckrtb1tch.focusstart.di.CurrentRepository
-import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
+import com.w4eret1ckrtb1tch.focusstart.domain.model.Rate
 import com.w4eret1ckrtb1tch.focusstart.domain.repository.CurrenciesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,20 +15,19 @@ import java.text.DateFormat
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel
-@Inject constructor(
+class ListViewModel @Inject constructor(
     @CurrentRepository
     private val repository: CurrenciesRepository
 ) : ViewModel() {
 
-    private val currencies: MutableLiveData<List<Currency>> = MutableLiveData()
+    private val currencies: MutableLiveData<List<Rate>> = MutableLiveData()
     private val date: MutableLiveData<String> = MutableLiveData()
 
     init {
         loadCurrencies()
     }
 
-    fun getCurrencies(): LiveData<List<Currency>> = currencies
+    fun getCurrencies(): LiveData<List<Rate>> = currencies
     fun getDate(): LiveData<String> = date
 
     @SuppressLint("CheckResult")
@@ -39,7 +38,7 @@ class ListViewModel
             .subscribe(
                 {
                     Log.d("TAG", "loadCurrencies: load")
-                    currencies.value = it.currency.values.toList()
+                    currencies.value = it.rate.values.toList()
                     date.value = DateFormat.getDateInstance().format(it.date)
                 },
                 { error ->

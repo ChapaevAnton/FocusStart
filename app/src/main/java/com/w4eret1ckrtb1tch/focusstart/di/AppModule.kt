@@ -1,7 +1,7 @@
 package com.w4eret1ckrtb1tch.focusstart.di
 
 import com.w4eret1ckrtb1tch.focusstart.data.dto.CurrenciesResponse
-import com.w4eret1ckrtb1tch.focusstart.data.dto.CurrencyResponse
+import com.w4eret1ckrtb1tch.focusstart.data.dto.RateDto
 import com.w4eret1ckrtb1tch.focusstart.data.mapper.CurrenciesMapperImpl
 import com.w4eret1ckrtb1tch.focusstart.data.repository.CurrenciesRepositoryImpl
 import com.w4eret1ckrtb1tch.focusstart.data.repository.MockCurrenciesRepositoryImpl
@@ -21,18 +21,18 @@ abstract class AppModule {
 
     @Binds
     @Reusable
+    @CurrentRepository
     abstract fun bindCurrenciesRepository(currenciesRepository: CurrenciesRepositoryImpl): CurrenciesRepository
 
     @Binds
     @Reusable
-    @CurrentRepository
-    abstract fun bindMockCurrenciesRepository(mockCurrenciesRepositoryImpl: MockCurrenciesRepositoryImpl): CurrenciesRepository
+    abstract fun bindMockCurrenciesRepository(currenciesRepository: MockCurrenciesRepositoryImpl): CurrenciesRepository
 
     @Binds
     @Reusable
     abstract fun bindCurrenciesMapper(
         currenciesMapper: CurrenciesMapperImpl
-    ): @JvmSuppressWildcards CurrenciesMapper<CurrenciesResponse, CurrencyResponse>
+    ): @JvmSuppressWildcards CurrenciesMapper<CurrenciesResponse, RateDto>
 }
 
 @Qualifier

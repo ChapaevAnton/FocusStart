@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.presentation.item
+package com.w4eret1ckrtb1tch.focusstart.ui.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -10,7 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.w4eret1ckrtb1tch.focusstart.R
 import com.w4eret1ckrtb1tch.focusstart.databinding.FragmentItemBinding
-import com.w4eret1ckrtb1tch.focusstart.domain.model.Currency
+import com.w4eret1ckrtb1tch.focusstart.domain.model.Rate
+import com.w4eret1ckrtb1tch.focusstart.presentation.viewmodel.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.math.BigDecimal
 
@@ -21,7 +22,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
     private val binding get() = _binding!!
     private val viewModel by viewModels<ItemViewModel>()
     private val args: ItemFragmentArgs by navArgs()
-    private lateinit var currency: Currency
+    private lateinit var rate: Rate
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +35,8 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currency = args.currency
-        viewModel.setCurrency(currency)
+        rate = args.currency
+        viewModel.setCurrency(rate)
         viewModel.getCurrency().observe(viewLifecycleOwner) { currency ->
             with(binding) {
                 name.text = currency.name

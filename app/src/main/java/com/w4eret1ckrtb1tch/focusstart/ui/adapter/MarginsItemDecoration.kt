@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.presentation.list
+package com.w4eret1ckrtb1tch.focusstart.ui.adapter
 
 import android.content.res.Resources
 import android.graphics.Rect
