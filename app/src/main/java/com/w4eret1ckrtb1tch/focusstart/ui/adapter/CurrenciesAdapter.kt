@@ -10,7 +10,7 @@ import com.w4eret1ckrtb1tch.focusstart.domain.model.Rate
 import java.math.BigDecimal
 
 
-class CurrenciesAdapter(private val onRateClickListener: (rate: Rate) -> Unit) :
+class CurrenciesAdapter(private val onRateClickListener: ((rate: Rate) -> Unit)) :
     ListAdapter<Rate, CurrenciesAdapter.CurrencyHolder>(CurrenciesDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyHolder =
@@ -22,7 +22,7 @@ class CurrenciesAdapter(private val onRateClickListener: (rate: Rate) -> Unit) :
 
     class CurrencyHolder private constructor(
         private val binding: CurrencyItemBinding,
-        onRateClickListener: (rate: Rate) -> Unit
+        onRateClickListener: ((rate: Rate) -> Unit)
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -42,7 +42,13 @@ class CurrenciesAdapter(private val onRateClickListener: (rate: Rate) -> Unit) :
                 tvName.text = model.name
                 tvRate.text = itemView.context.getString(R.string.rate, deviationRate)
                 tvValue.text = itemView.context.getString(R.string.value, rate.value)
-                ivRateArrow.setImageResource(if (deviationRate >= BigDecimal(0)) R.drawable.ic_up else R.drawable.ic_down)
+                ivRateArrow.setImageResource(
+                    if (deviationRate >= BigDecimal(0)) {
+                        R.drawable.ic_up
+                    } else {
+                        R.drawable.ic_down
+                    }
+                )
             }
         }
 
@@ -50,7 +56,7 @@ class CurrenciesAdapter(private val onRateClickListener: (rate: Rate) -> Unit) :
 
             fun create(
                 parent: ViewGroup,
-                onRateClickListener: (rate: Rate) -> Unit
+                onRateClickListener: ((rate: Rate) -> Unit)
             ): CurrencyHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val binding = CurrencyItemBinding.inflate(inflater, parent, false)

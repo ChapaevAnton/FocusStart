@@ -12,6 +12,7 @@ import com.w4eret1ckrtb1tch.focusstart.databinding.FragmentListBinding
 import com.w4eret1ckrtb1tch.focusstart.presentation.viewmodel.ListViewModel
 import com.w4eret1ckrtb1tch.focusstart.ui.adapter.CurrenciesAdapter
 import com.w4eret1ckrtb1tch.focusstart.ui.adapter.MarginsItemDecoration
+import com.w4eret1ckrtb1tch.focusstart.utils.unsafeLazy
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,13 +21,13 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) {
+    private val adapter by unsafeLazy {
         CurrenciesAdapter { rate ->
             val action = ListFragmentDirections.actionOpenItem(rate)
             findNavController().navigate(action)
         }
     }
-    private val decorator by lazy(LazyThreadSafetyMode.NONE) {
+    private val decorator by unsafeLazy {
         MarginsItemDecoration(MARGIN_RATE_ITEM)
     }
     private val viewModel by viewModels<ListViewModel>()

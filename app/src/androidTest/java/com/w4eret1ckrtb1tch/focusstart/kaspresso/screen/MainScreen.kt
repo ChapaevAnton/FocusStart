@@ -24,11 +24,11 @@ object MainScreen : Screen<MainScreen>() {
     )
 
     class TransactionItem(parent: Matcher<View>) : KRecyclerItem<TransactionItem>(parent) {
-        val charCode = KTextView(parent) { withId(R.id.char_code) }
-        val name = KTextView(parent) { withId(R.id.name) }
-        val rate = KTextView(parent) { withId(R.id.rate) }
-        val value = KTextView(parent) { withId(R.id.value) }
-        val arrowId = KImageView(parent) { withId(R.id.rate_arrow) }
+        val charCode = KTextView(parent) { withId(R.id.tvCharCode) }
+        val name = KTextView(parent) { withId(R.id.tvName) }
+        val rate = KTextView(parent) { withId(R.id.tvRate) }
+        val value = KTextView(parent) { withId(R.id.tvValue) }
+        val arrowId = KImageView(parent) { withId(R.id.ivRateArrow) }
     }
 
 }

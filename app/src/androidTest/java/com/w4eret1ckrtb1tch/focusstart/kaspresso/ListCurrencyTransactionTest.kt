@@ -10,7 +10,7 @@ import com.w4eret1ckrtb1tch.focusstart.kaspresso.config.toValue
 import com.w4eret1ckrtb1tch.focusstart.kaspresso.data.Transaction
 import com.w4eret1ckrtb1tch.focusstart.kaspresso.data.TransactionData
 import com.w4eret1ckrtb1tch.focusstart.kaspresso.screen.MainScreen
-import com.w4eret1ckrtb1tch.focusstart.ui.activity.BaseActivity
+import com.w4eret1ckrtb1tch.focusstart.ui.activity.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,7 +21,7 @@ import java.math.BigDecimal
 class ListCurrencyTransactionTest : KTestCase() {
 
     @get:Rule
-    val activityScenarioRule = ActivityScenarioRule(BaseActivity::class.java)
+    val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     @TestCase(
