@@ -13,48 +13,65 @@ import com.w4eret1ckrtb1tch.focusstart.presentation.viewmodel.ListViewModel
 import com.w4eret1ckrtb1tch.focusstart.ui.adapter.CurrenciesAdapter
 import com.w4eret1ckrtb1tch.focusstart.ui.adapter.MarginsItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list) {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    @Inject lateinit var adapter: CurrenciesAdapter
-    private val decorator by lazy { MarginsItemDecoration(5) }
+
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) {
+        CurrenciesAdapter { rate ->
+            val action = ListFragmentDirections.actionOpenItem(rate)
+            findNavController().navigate(action)
+        }
+    }
+    private val decorator by lazy(LazyThreadSafetyMode.NONE) {
+        MarginsItemDecoration(MARGIN_RATE_ITEM)
+    }
     private val viewModel by viewModels<ListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter.listener =
-            OnItemClickListener { currency ->
-                val action = ListFragmentDirections.actionOpenItem(currency)
-                findNavController().navigate(action)
-            }
-        binding.listOfCurrencies.adapter = adapter
-        binding.listOfCurrencies.addItemDecoration(decorator)
-        binding.loadCurrencies.setOnClickListener { viewModel.loadCurrencies() }
+        initView()
+        initListener()
+        initObserver()
+    }
+
+    private fun initView() = with(binding) {
+        rvListCurrencies.adapter = adapter
+        rvListCurrencies.addItemDecoration(decorator)
+    }
+
+    private fun initListener() = with(binding) {
+        loadCurrenciesButton.setOnClickListener { viewModel.loadCurrencies() }
+    }
+
+    private fun initObserver() = with(binding) {
         viewModel.getCurrencies()
             .observe(viewLifecycleOwner) { currencies ->
                 adapter.submitList(currencies)
             }
         viewModel.getDate().observe(viewLifecycleOwner) { date ->
-            binding.date.text = getString(R.string.title_date, date)
+            tvDate.text = getString(R.string.title_date, date)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        adapter.listener = null
+    }
+
+    companion object {
+        const val MARGIN_RATE_ITEM = 5
     }
 }

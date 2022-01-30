@@ -2,7 +2,7 @@ package com.w4eret1ckrtb1tch.focusstart.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.w4eret1ckrtb1tch.focusstart.data.datasource.network.DailyApi
+import com.w4eret1ckrtb1tch.focusstart.data.network.DailyApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

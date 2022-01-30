@@ -13,12 +13,12 @@ import org.hamcrest.Matcher
 object MainScreen : Screen<MainScreen>() {
 
 
-    val titleInfo = KTextView { withId(R.id.date) }
-    val updateButton = KButton { withId(R.id.load_currencies) }
+    val titleInfo = KTextView { withId(R.id.tvDate) }
+    val updateButton = KButton { withId(R.id.loadCurrenciesButton) }
 
     val transactionList = KRecyclerView(
         builder = {
-            withId(R.id.list_of_currencies)
+            withId(R.id.rvListCurrencies)
         },
         itemTypeBuilder = { itemType(::TransactionItem) }
     )

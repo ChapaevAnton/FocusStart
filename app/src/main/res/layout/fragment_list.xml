@@ -8,7 +8,7 @@
     tools:context=".ui.fragment.ListFragment">
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/tvDate"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -20,28 +20,28 @@
         tools:text="@tools:sample/lorem" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_of_currencies"
+        android:id="@+id/rvListCurrencies"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/margin_layout_1"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/load_currencies"
+        app:layout_constraintBottom_toTopOf="@id/loadCurrenciesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date"
+        app:layout_constraintTop_toBottomOf="@id/tvDate"
         app:layout_constraintVertical_chainStyle="spread"
         tools:itemCount="20"
         tools:listitem="@layout/currency_item" />
 
     <Button
         android:layout_margin="@dimen/margin_layout_1"
-        android:id="@+id/load_currencies"
+        android:id="@+id/loadCurrenciesButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/load_currencies"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/list_of_currencies" />
+        app:layout_constraintTop_toBottomOf="@id/rvListCurrencies" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

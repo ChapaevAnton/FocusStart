@@ -22,8 +22,8 @@
         android:label="fragment_item"
         tools:layout="@layout/fragment_item" >
         <argument
-            android:name="currency"
-            app:argType="com.w4eret1ckrtb1tch.focusstart.domain.model.Currency" />
+            android:name="rate"
+            app:argType="com.w4eret1ckrtb1tch.focusstart.domain.model.Rate" />
     </fragment>
 
 </navigation>

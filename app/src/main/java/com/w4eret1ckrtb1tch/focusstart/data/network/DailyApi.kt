@@ -1,4 +1,4 @@
-package com.w4eret1ckrtb1tch.focusstart.data.datasource.network
+package com.w4eret1ckrtb1tch.focusstart.data.network
 
 import com.w4eret1ckrtb1tch.focusstart.data.dto.CurrenciesResponse
 import io.reactivex.Single

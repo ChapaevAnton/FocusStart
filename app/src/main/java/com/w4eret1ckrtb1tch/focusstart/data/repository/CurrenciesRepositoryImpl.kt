@@ -1,6 +1,6 @@
 package com.w4eret1ckrtb1tch.focusstart.data.repository
 
-import com.w4eret1ckrtb1tch.focusstart.data.datasource.network.DailyApi
+import com.w4eret1ckrtb1tch.focusstart.data.network.DailyApi
 import com.w4eret1ckrtb1tch.focusstart.data.dto.CurrenciesResponse
 import com.w4eret1ckrtb1tch.focusstart.data.dto.RateDto
 import com.w4eret1ckrtb1tch.focusstart.domain.mapper.CurrenciesMapper

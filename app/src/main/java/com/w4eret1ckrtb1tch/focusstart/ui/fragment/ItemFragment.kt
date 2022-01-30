@@ -35,7 +35,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rate = args.currency
+        rate = args.rate
         viewModel.setCurrency(rate)
         viewModel.getCurrency().observe(viewLifecycleOwner) { currency ->
             with(binding) {
